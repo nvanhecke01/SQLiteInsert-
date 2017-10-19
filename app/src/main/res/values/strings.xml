@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">SQLite Insert</string>
+    <string name="username_label">USERNAME</string>
+    <string name="password_label">PASSWORD</string>
+    <string name="addUser_label">ADD USER</string>
 </resources>
