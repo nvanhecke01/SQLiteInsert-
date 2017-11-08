@@ -1,78 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/activity_main"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    tools:context="com.example.sqliteinsert.MainActivity">
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        tools:context="com.example.sqliteinsert.MainActivity">
-
+        android:paddingTop="@dimen/activity_vertical_margin">
 
         <TextView
-            android:text="@string/username_label"
+            android:text="@string/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="33dp"
-            android:layout_marginStart="33dp"
             android:layout_marginTop="12dp"
             android:id="@+id/textView"
             android:textSize="18sp"
-            android:textStyle="bold|italic" />
+            android:textStyle="bold|italic"
+            android:gravity="center" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
-            android:id="@+id/editText"
+            android:id="@+id/editName"
             android:textStyle="bold|italic"
             android:layout_below="@+id/textView"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:hint="Enter Name"
+            android:gravity="center_vertical|center" />
 
         <TextView
-            android:text="@string/password_label"
+            android:text="@string/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editText"
-            android:layout_alignLeft="@+id/textView"
-            android:layout_alignStart="@+id/textView"
-            android:layout_marginTop="26dp"
-            android:id="@+id/textView2"
+            android:layout_marginTop="13dp"
+            android:id="@+id/textViewPassword"
             android:textStyle="bold|italic"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_below="@+id/editName"
+            android:gravity="center"
+            android:hint="Enter Password" />
 
         <EditText
+            android:id="@+id/editPass"
+            android:hint="Enter Password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
-            android:layout_below="@+id/textView2"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="28dp"
-            android:id="@+id/editText2" />
+            android:textStyle="bold|italic"
+            android:layout_below="@+id/textViewPassword"
+            android:gravity="center_vertical|center"
+            android:textAllCaps="false"/>
 
         <Button
-            android:text="@string/addUser_label"
-            android:layout_width="match_parent"
+            android:text="@string/add_user"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button"
+            android:id="@+id/buttonAddUser"
             android:textStyle="bold|italic"
             android:textSize="18sp"
-            android:layout_below="@id/editText2"
+            android:onClick="addUser"
+            android:layout_marginLeft="28dp"
+            android:layout_marginStart="28dp"
+            android:layout_below="@+id/editPass"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="15dp"
-            android:onClick="addUser"/>
+            android:layout_marginTop="23dp" />
+
+        <Button
+            android:text="@string/view_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonViewData"
+            android:textSize="18sp"
+            android:textStyle="bold|italic"
+            android:layout_marginRight="28dp"
+            android:layout_marginEnd="28dp"
+            android:layout_alignBaseline="@+id/buttonAddUser"
+            android:layout_alignBottom="@+id/buttonAddUser"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <EditText
+            android:id="@+id/editTextCurrentName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/buttonAddUser"
+            android:layout_marginTop="28dp"
+            android:layout_toLeftOf="@+id/buttonUpdate"
+            android:layout_toStartOf="@+id/buttonUpdate"
+            android:layout_marginRight="28dp"
+            android:layout_marginEnd="28dp"
+            android:ems="10"
+            android:hint="Current Name"
+            android:inputType="textPersonName"
+            android:textSize="14sp"
+            android:textStyle="bold|italic" />
+
+        <EditText
+            android:id="@+id/editTextNewName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/editTextCurrentName"
+            android:layout_alignStart="@+id/editTextCurrentName"
+            android:layout_below="@+id/editTextCurrentName"
+            android:layout_toLeftOf="@+id/buttonUpdate"
+            android:layout_toStartOf="@+id/buttonUpdate"
+            android:layout_marginRight="28dp"
+            android:layout_marginEnd="28dp"
+            android:ems="10"
+            android:hint="New Name"
+            android:inputType="textPersonName"
+            android:textSize="14sp"
+            android:textStyle="bold|italic" />
+
+        <Button
+            android:text="@string/update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonUpdate"
+            android:textStyle="normal|bold"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="28dp"
+            android:layout_marginEnd="28dp"
+            android:layout_alignTop="@+id/editTextNewName"
+            android:layout_alignBottom="@+id/editTextNewName"/>
+
+        <EditText
+            android:id="@+id/editTextUserNameToDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/editTextNewName"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/editTextNewName"
+            android:layout_below="@+id/editTextNewName"
+            android:layout_marginTop="41dp"
+            android:ems="10"
+            android:freezesText="false"
+            android:hint="Enter Name to Delete Data"
+            android:inputType="textPersonName"
+            android:textSize="14sp"
+            android:textStyle="bold|italic" />
+
+        <Button
+            android:text="@string/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="28dp"
+            android:layout_marginEnd="28dp"
+            android:id="@+id/buttonDelete"
+            android:textStyle="normal|bold"
+            tools:ignore="RelativeOverlap"
+            android:layout_alignTop="@+id/editTextUserNameToDelete"
+            android:layout_alignBottom="@+id/editTextUserNameToDelete"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
     </RelativeLayout>
 </ScrollView>

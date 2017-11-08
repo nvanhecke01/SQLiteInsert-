@@ -15,11 +15,11 @@ public class myDbHelper extends SQLiteOpenHelper {
     // private static final String DROP_TABLE ="DROP TABLE IF EXISTS "+TABLE_NAME;
     private Context context;
 
-    private static final String DATABASE_NAME = "myDatabase";
+    public static final String LOG_TAG = myDbHelper.class.getSimpleName();
 
-    private static final int DATABASE_Version = 1;
+    private static final String DATABASE_NAME = "myDatabase.db";
 
-    myEntry myEntry;
+    private static final int DATABASE_Version = 3;
 
     /**
      * Constructs a new instance of {@link myDbHelper}.
@@ -38,7 +38,7 @@ public class myDbHelper extends SQLiteOpenHelper {
         try {
             String CREATE_TABLE = "CREATE TABLE "+ myEntry.TABLE_NAME + " (" +
                     myEntry.UID +" INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    myEntry.NAME + " TEXT NOT NULL, " +
+                    myEntry.NAME + " TEXT NOT NULL UNIQUE, " +
                     myEntry.PASSWORD + " TEXT NOT NULL);";
             db.execSQL(CREATE_TABLE);
             Message.message(context,"TABLE CREATED");
@@ -49,12 +49,13 @@ public class myDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-      /*try {
-           Message.message(context,"OnUpgrade");
-           db.execSQL(DROP_TABLE);
-           onCreate(db);
-        }catch (Exception e) {
-           Message.message(context,""+e);
-        }*/
+        try {
+            String DROP_TABLE = "DROP TABLE "+ myEntry.TABLE_NAME + ";";
+            Message.message(context,"OnUpgrade");
+            db.execSQL(DROP_TABLE);
+            onCreate(db);
+        } catch (Exception e) {
+            Message.message(context,""+e);
+        }
     }
 }
